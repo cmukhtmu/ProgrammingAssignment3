@@ -7,14 +7,20 @@ best <- function(state, outcome) {
 
     if(!(outcome %in% c("heart attack","heart failure","pneumonia"))) stop("invalid outcome")
     
-    print("Input looks good")
+    ##print("Input looks good")
     
     ## Return hospital name in that state with lowest 30-day death
     if(outcome == "heart attack") outcomeCol = 11
     else if(outcome == "heart failure") outcomeCol = 17
     else if(outcome == "pneumonia") outcomeCol = 23
+    
+    message("column selected: ", outcomeCol)
+    
     outcomeData = subset(outcomeData, State==state)
-    min(as.numeric(outcomeData[,outcomeCol]), na.rm = T)
+    
+    outcomeData = outcomeData[order(as.numeric(outcomeData[,outcomeCol]), outcomeData[,2]),]
+    
+    outcomeData[1,2]
     
     ## rate
 }
