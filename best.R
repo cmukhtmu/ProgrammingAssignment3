@@ -14,7 +14,7 @@ best <- function(state, outcome) {
     else if(outcome == "heart failure") outcomeCol = 17
     else if(outcome == "pneumonia") outcomeCol = 23
     
-    message("column selected: ", outcomeCol)
+    ##message("column selected: ", outcomeCol)
     
     outcomeData = subset(outcomeData, State==state)
     
