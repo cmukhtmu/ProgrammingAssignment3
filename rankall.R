@@ -29,14 +29,24 @@ rankall <- function(outcome, num = "best") {
         
         names(outcomeData) <- c("Rank", "Hospital", "State", "Rate")
         
-        outcomeData[,c(2,3,4,1)]
+        ##outcomeData[,c(2,3,4,1)]
         
         outcomeData = subset(outcomeData, Rate!="Not Available")
         
-        if(num == "best") num = 1
-        else if(num == "worst") num = max(outcomeData$Rank)
+        if(num == "best") 
+        {
+          hRank = 1
+        }
+        else if(num == "worst")
+        {
+          hRank = max(outcomeData$Rank)
+        }
+        else
+        {
+          hRank = num
+        }
         
-        outcomeData = subset(outcomeData, Rank==num)
+        outcomeData = subset(outcomeData, Rank==hRank)
         
         finalOutcome = rbind(data.frame("Hospital"=outcomeData[1,2], "State"=state), finalOutcome)
     }
